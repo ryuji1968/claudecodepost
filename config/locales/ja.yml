@@ -2,10 +2,16 @@ ja:
   activerecord:
     models:
       post: 投稿
+      user: ユーザー
     attributes:
       post:
         title: タイトル
         body: 本文
+      user:
+        email_address: メールアドレス
+        password: パスワード
+        password_confirmation: パスワード（確認）
+        password_digest: パスワード
   helpers:
     submit:
       create: 登録する
@@ -18,6 +24,61 @@ ja:
       search: 検索...
       notifications: 通知
       profile: プロフィール
+      logout: ログアウト
+  sessions:
+    new:
+      title: ログイン
+      email: メールアドレス
+      email_placeholder: メールアドレスを入力
+      password: パスワード
+      password_placeholder: パスワードを入力
+      submit: ログイン
+      forgot_password: パスワードをお忘れですか？
+      sign_up: 新規登録はこちら
+    flash:
+      invalid: メールアドレスまたはパスワードが正しくありません。
+      rate_limited: しばらくしてから再度お試しください。
+  registrations:
+    new:
+      title: 新規登録
+      email: メールアドレス
+      email_placeholder: メールアドレスを入力
+      password: パスワード
+      password_placeholder: パスワードを入力
+      password_confirmation: パスワード（確認）
+      password_confirmation_placeholder: パスワードを再入力
+      submit: 登録する
+      sign_in: ログインはこちら
+    flash:
+      created: アカウントを作成しました。
+  passwords:
+    new:
+      title: パスワードリセット
+      email: メールアドレス
+      email_placeholder: メールアドレスを入力
+      submit: リセット手順を送信
+      back_to_login: ログイン画面に戻る
+    edit:
+      title: パスワード再設定
+      new_password: 新しいパスワード
+      new_password_placeholder: 新しいパスワードを入力
+      password_confirmation: パスワード（確認）
+      password_confirmation_placeholder: パスワードを再入力
+      submit: パスワードを更新
+      back_to_login: ログイン画面に戻る
+    flash:
+      sent: パスワードリセットの手順を送信しました（該当するユーザーが存在する場合）。
+      reset: パスワードを再設定しました。
+      mismatch: パスワードが一致しません。
+      invalid_link: パスワードリセットリンクが無効または期限切れです。
+      rate_limited: しばらくしてから再度お試しください。
+  passwords_mailer:
+    reset:
+      subject: パスワードリセットのご案内
+      link_text: こちらのリンク
+      body: からパスワードをリセットできます。
+      text_body: "以下のリンクからパスワードをリセットできます："
+      expiry: このリンクの有効期限は%{duration}です。
   dashboard:
     show:
       title: ダッシュボード

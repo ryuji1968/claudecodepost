@@ -4,13 +4,6 @@
   <li class="breadcrumb-item active"><%= @post.title %></li>
 <% end %>
 
-<% if notice.present? %>
-  <div class="alert alert-success alert-dismissible fade show" role="alert">
-    <%= notice %>
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-  </div>
-<% end %>
-
 <div class="page-header">
   <h2><%= @post.title %></h2>
 </div>

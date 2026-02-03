@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= content_for(:title) || t("layouts.application.app_name") %></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="Sample Rails">
+    <meta name="mobile-web-app-capable" content="yes">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= yield :head %>
+
+    <link rel="icon" href="/icon.png" type="image/png">
+    <link rel="icon" href="/icon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/icon.png">
+
+    <%# Includes all stylesheet files in app/assets/stylesheets %>
+    <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "bootstrap-icons", "data-turbo-track": "reload" %>
+    <%= javascript_include_tag "popper" %>
+    <%= javascript_include_tag "bootstrap.min" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body class="bg-light">
+    <div class="d-flex align-items-center justify-content-center" style="min-height: 100vh;">
+      <div class="w-100" style="max-width: 420px; padding: 1rem;">
+        <div class="text-center mb-4">
+          <h2 class="fw-bold" style="color: #3366ff;"><i class="bi bi-box-seam"></i> <%= t("layouts.application.app_name") %></h2>
+        </div>
+
+        <% if flash[:alert].present? %>
+          <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <%= flash[:alert] %>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        <% end %>
+
+        <% if flash[:notice].present? %>
+          <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <%= flash[:notice] %>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        <% end %>
+
+        <div class="card shadow-sm">
+          <div class="card-body p-4">
+            <%= yield %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

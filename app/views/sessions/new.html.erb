@@ -1,0 +1,22 @@
+<h4 class="card-title text-center mb-4"><%= t("sessions.new.title") %></h4>
+
+<%= form_with url: session_path do |form| %>
+  <div class="mb-3">
+    <%= form.label :email_address, t("sessions.new.email"), class: "form-label" %>
+    <%= form.email_field :email_address, required: true, autofocus: true, autocomplete: "username", class: "form-control", placeholder: t("sessions.new.email_placeholder"), value: params[:email_address] %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :password, t("sessions.new.password"), class: "form-label" %>
+    <%= form.password_field :password, required: true, autocomplete: "current-password", class: "form-control", placeholder: t("sessions.new.password_placeholder"), maxlength: 72 %>
+  </div>
+
+  <div class="d-grid mb-3">
+    <%= form.submit t("sessions.new.submit"), class: "btn btn-primary" %>
+  </div>
+<% end %>
+
+<div class="text-center">
+  <p class="mb-1"><%= link_to t("sessions.new.forgot_password"), new_password_path %></p>
+  <p class="mb-0"><%= link_to t("sessions.new.sign_up"), new_registration_path %></p>
+</div>

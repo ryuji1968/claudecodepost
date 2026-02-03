@@ -1,0 +1,16 @@
+<h4 class="card-title text-center mb-4"><%= t("passwords.new.title") %></h4>
+
+<%= form_with url: passwords_path do |form| %>
+  <div class="mb-3">
+    <%= form.label :email_address, t("passwords.new.email"), class: "form-label" %>
+    <%= form.email_field :email_address, required: true, autofocus: true, autocomplete: "username", class: "form-control", placeholder: t("passwords.new.email_placeholder"), value: params[:email_address] %>
+  </div>
+
+  <div class="d-grid mb-3">
+    <%= form.submit t("passwords.new.submit"), class: "btn btn-primary" %>
+  </div>
+<% end %>
+
+<div class="text-center">
+  <p class="mb-0"><%= link_to t("passwords.new.back_to_login"), new_session_path %></p>
+</div>

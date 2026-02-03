@@ -1,6 +1,10 @@
 require "rails_helper"
 
 RSpec.describe "Posts", type: :request do
+  let(:user) { create(:user) }
+
+  before { sign_in_as(user) }
+
   describe "GET /posts" do
     it "returns http success" do
       get posts_path
@@ -15,10 +19,10 @@ RSpec.describe "Posts", type: :request do
   end
 
   describe "GET /posts/:id" do
-    let(:post) { create(:post) }
+    let(:existing_post) { create(:post) }
 
     it "returns http success" do
-      get post_path(post)
+      get post_path(existing_post)
       expect(response).to have_http_status(:success)
     end
   end
@@ -62,6 +66,14 @@ RSpec.describe "Posts", type: :request do
       expect do
         delete post_path(existing_post)
       end.to change(Post, :count).by(-1)
+    end
+  end
+
+  describe "認証" do
+    it "未ログインでアクセスするとリダイレクトされる" do
+      delete session_path
+      get posts_path
+      expect(response).to redirect_to(new_session_path)
     end
   end
 end
