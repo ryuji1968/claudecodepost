@@ -1,0 +1,25 @@
+<% content_for :title, t(".title") %>
+<% content_for :breadcrumb do %>
+  <li class="breadcrumb-item"><%= link_to t("posts.index.title"), posts_path %></li>
+  <li class="breadcrumb-item active"><%= t(".title") %></li>
+<% end %>
+
+<div class="page-header">
+  <h2><%= t(".title") %></h2>
+</div>
+
+<div class="card">
+  <div class="card-header"><%= t(".post_details") %></div>
+  <div class="card-body">
+    <%= render "form", post: @post %>
+  </div>
+</div>
+
+<div class="mt-2 d-flex gap-2">
+  <%= link_to @post, class: "btn btn-outline-primary" do %>
+    <i class="bi bi-eye"></i> <%= t(".show") %>
+  <% end %>
+  <%= link_to posts_path, class: "btn btn-outline-secondary" do %>
+    <i class="bi bi-arrow-left"></i> <%= t(".back_to_posts") %>
+  <% end %>
+</div>

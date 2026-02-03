@@ -1,0 +1,133 @@
+<% content_for :breadcrumb do %>
+  <li class="breadcrumb-item active"><%= t("dashboard.show.title") %></li>
+<% end %>
+
+<h1 class="mb-4"><i class="bi bi-speedometer2 me-2"></i><%= t("dashboard.show.title") %></h1>
+
+<%# Report Cards (Materially style) %>
+<div class="row g-3 mb-4">
+  <div class="col-xl-3 col-sm-6">
+    <div class="card report-card">
+      <div class="card-body">
+        <div class="d-flex justify-content-between align-items-center">
+          <div>
+            <div class="report-card-value text-warning"><%= @total_posts %></div>
+            <div class="report-card-label"><%= t("dashboard.show.total_posts") %></div>
+          </div>
+          <div class="report-card-icon text-warning">
+            <i class="bi bi-collection"></i>
+          </div>
+        </div>
+      </div>
+      <div class="report-card-footer bg-warning">
+        <span><i class="bi bi-graph-up me-1"></i><%= t("dashboard.show.all_time_stats") %></span>
+      </div>
+    </div>
+  </div>
+  <div class="col-xl-3 col-sm-6">
+    <div class="card report-card">
+      <div class="card-body">
+        <div class="d-flex justify-content-between align-items-center">
+          <div>
+            <div class="report-card-value text-danger"><%= @posts_today %></div>
+            <div class="report-card-label"><%= t("dashboard.show.today") %></div>
+          </div>
+          <div class="report-card-icon text-danger">
+            <i class="bi bi-calendar-check"></i>
+          </div>
+        </div>
+      </div>
+      <div class="report-card-footer bg-danger">
+        <span><i class="bi bi-clock me-1"></i><%= t("dashboard.show.todays_activity") %></span>
+      </div>
+    </div>
+  </div>
+  <div class="col-xl-3 col-sm-6">
+    <div class="card report-card">
+      <div class="card-body">
+        <div class="d-flex justify-content-between align-items-center">
+          <div>
+            <div class="report-card-value text-success"><%= @posts_this_week %></div>
+            <div class="report-card-label"><%= t("dashboard.show.this_week") %></div>
+          </div>
+          <div class="report-card-icon text-success">
+            <i class="bi bi-calendar-week"></i>
+          </div>
+        </div>
+      </div>
+      <div class="report-card-footer bg-success">
+        <span><i class="bi bi-graph-up me-1"></i><%= t("dashboard.show.weekly_summary") %></span>
+      </div>
+    </div>
+  </div>
+  <div class="col-xl-3 col-sm-6">
+    <div class="card report-card">
+      <div class="card-body">
+        <div class="d-flex justify-content-between align-items-center">
+          <div>
+            <div class="report-card-value text-primary"><%= @posts_this_month %></div>
+            <div class="report-card-label"><%= t("dashboard.show.this_month") %></div>
+          </div>
+          <div class="report-card-icon text-primary">
+            <i class="bi bi-calendar-month"></i>
+          </div>
+        </div>
+      </div>
+      <div class="report-card-footer bg-primary">
+        <span><i class="bi bi-graph-up me-1"></i><%= t("dashboard.show.monthly_summary") %></span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%# Sales Line Card style charts %>
+<div class="row g-3" data-controller="chart" data-chart-daily-value="<%= @daily_counts.to_json %>" data-chart-monthly-value="<%= @monthly_counts.to_json %>">
+  <div class="col-lg-6">
+    <div class="card sales-card">
+      <div class="sales-card-header bg-primary">
+        <div class="d-flex justify-content-between align-items-center mb-2">
+          <span class="sales-card-title"><%= t("dashboard.show.daily_posts") %></span>
+          <span class="sales-card-badge"><i class="bi bi-graph-up me-1"></i><%= @daily_counts.values.sum %> <%= t("dashboard.show.posts_unit") %></span>
+        </div>
+        <div id="dailyChart"></div>
+      </div>
+      <div class="card-body">
+        <div class="row text-center">
+          <div class="col-6 sales-card-stat">
+            <div class="sales-card-stat-value"><%= @daily_counts.values.max || 0 %></div>
+            <div class="sales-card-stat-label"><%= t("dashboard.show.daily_max") %></div>
+          </div>
+          <div class="col-6 sales-card-stat">
+            <% avg = @daily_counts.any? ? (@daily_counts.values.sum.to_f / @daily_counts.size).round(1) : 0 %>
+            <div class="sales-card-stat-value"><%= avg %></div>
+            <div class="sales-card-stat-label"><%= t("dashboard.show.daily_avg") %></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-6">
+    <div class="card sales-card">
+      <div class="sales-card-header" style="background-color: #00ac69;">
+        <div class="d-flex justify-content-between align-items-center mb-2">
+          <span class="sales-card-title"><%= t("dashboard.show.monthly_posts") %></span>
+          <span class="sales-card-badge"><i class="bi bi-bar-chart-line me-1"></i><%= @monthly_counts.values.sum %> <%= t("dashboard.show.posts_unit") %></span>
+        </div>
+        <div id="monthlyChart"></div>
+      </div>
+      <div class="card-body">
+        <div class="row text-center">
+          <div class="col-6 sales-card-stat">
+            <div class="sales-card-stat-value"><%= @monthly_counts.values.max || 0 %></div>
+            <div class="sales-card-stat-label"><%= t("dashboard.show.monthly_max") %></div>
+          </div>
+          <div class="col-6 sales-card-stat">
+            <% mavg = @monthly_counts.any? ? (@monthly_counts.values.sum.to_f / @monthly_counts.size).round(1) : 0 %>
+            <div class="sales-card-stat-value"><%= mavg %></div>
+            <div class="sales-card-stat-label"><%= t("dashboard.show.monthly_avg") %></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

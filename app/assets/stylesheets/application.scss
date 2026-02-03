@@ -1,0 +1,484 @@
+// Materially Theme Variables (override Bootstrap defaults)
+$primary:       #3366ff;
+$secondary:     #425466;
+$success:       #00ac69;
+$danger:        #ff413a;
+$warning:       #f4a100;
+$info:          #00cfd5;
+
+$body-bg:       #f0f2f8;
+$body-color:    #242c3a;
+
+$font-family-sans-serif: 'Poppins', sans-serif;
+
+$border-radius:    0.625rem; // 10px
+$border-radius-sm: 0.3125rem; // 5px
+$border-radius-lg: 0.625rem;
+
+$card-border-width: 0;
+$card-box-shadow:   0 4px 6px -2px rgba(0, 0, 0, 0.12), 0 2px 2px -1px rgba(0, 0, 0, 0.05);
+
+$box-shadow:    0 4px 6px -2px rgba(0, 0, 0, 0.12), 0 2px 2px -1px rgba(0, 0, 0, 0.05);
+$box-shadow-sm: 0 2px 4px -1px rgba(0, 0, 0, 0.1);
+
+$navbar-dark-color:           rgba(255, 255, 255, 0.85);
+$navbar-dark-hover-color:     #fff;
+$navbar-dark-brand-color:     #fff;
+
+$table-striped-bg: rgba(51, 102, 255, 0.04);
+$table-hover-bg:   rgba(51, 102, 255, 0.08);
+
+$input-border-radius: 0.3125rem;
+
+@import "bootstrap";
+
+// Google Fonts import
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+// Materially custom styles
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: $body-bg;
+}
+
+// Sidebar
+.materially-sidebar {
+  width: 280px;
+  min-height: 100vh;
+  background: #fff;
+  box-shadow: 0 0.15rem 1.75rem 0 rgba(33, 40, 50, 0.15);
+  position: fixed;
+  top: 65px;
+  left: 0;
+  z-index: 1040;
+  transition: transform 0.3s ease;
+
+  .sidebar-brand {
+    display: none;
+  }
+
+  .nav-link {
+    color: $secondary;
+    padding: 0.75rem 1.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    border-radius: 5px;
+    margin: 2px 10px;
+    transition: all 0.15s ease;
+
+    &:hover, &.active {
+      background-color: rgba(51, 102, 255, 0.08);
+      color: $primary;
+    }
+
+    &.active {
+      background-color: rgba(51, 102, 255, 0.12);
+      font-weight: 600;
+    }
+
+    .nav-icon {
+      margin-right: 10px;
+      width: 20px;
+      text-align: center;
+    }
+  }
+
+  .nav-section-title {
+    font-size: 0.6875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: $primary;
+    padding: 1.25rem 1.5rem 0.5rem;
+    letter-spacing: 0.5px;
+  }
+}
+
+// Header / Navbar
+.materially-header {
+  background: $primary;
+  box-shadow: 0px 2px 4px -1px rgba(0,0,0,0.2), 0px 4px 5px 0px rgba(0,0,0,0.14);
+  height: 65px;
+  display: flex;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 1201;
+  padding: 0 1.5rem;
+  transition: left 0.3s ease;
+  gap: 0.75rem;
+
+  .breadcrumb {
+    .breadcrumb-item {
+      a {
+        color: rgba(#fff, 0.85);
+        &:hover { color: #fff; }
+      }
+      &.active { color: rgba(#fff, 0.7); }
+      + .breadcrumb-item::before { color: rgba(#fff, 0.5); }
+    }
+  }
+}
+
+// Header logo area (left section inside header)
+.header-brand {
+  width: 280px;
+  min-width: 280px;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+
+  @media (max-width: 1023px) {
+    width: auto;
+    min-width: auto;
+  }
+}
+
+.header-brand-text {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #fff;
+  text-decoration: none;
+  white-space: nowrap;
+
+  &:hover { color: #fff; }
+
+  @media (max-width: 1023px) {
+    display: none;
+  }
+}
+
+// Header actions (search, notification, profile)
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.header-search {
+  position: relative;
+  display: none;
+
+  @media (min-width: 768px) {
+    display: block;
+  }
+
+  .header-search-icon {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: rgba(#fff, 0.7);
+    font-size: 0.875rem;
+    pointer-events: none;
+  }
+
+  .header-search-input {
+    padding-left: 2.25rem;
+    height: 38px;
+    width: 200px;
+    background: rgba(#fff, 0.15);
+    border: none;
+    border-radius: 20px;
+    font-size: 0.8125rem;
+    color: #fff;
+    transition: width 0.25s ease, background 0.25s ease;
+
+    &::placeholder {
+      color: rgba(#fff, 0.6);
+    }
+
+    &:focus {
+      width: 260px;
+      background: rgba(#fff, 0.25);
+      box-shadow: none;
+      border-color: transparent;
+      color: #fff;
+    }
+  }
+}
+
+.header-icon-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  border: none;
+  background: rgba(#fff, 0.15);
+  color: #fff;
+  font-size: 1.125rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.15s ease;
+
+  &:hover {
+    background: rgba(#fff, 0.25);
+  }
+}
+
+.header-profile-btn {
+  font-size: 1.25rem;
+}
+
+// Main content
+.materially-main {
+  margin-left: 280px;
+  padding: 65px 0 0 0;
+  min-height: 100vh;
+  transition: margin-left 0.3s ease;
+}
+
+.materially-content {
+  padding: 1.5rem;
+}
+
+// Cards
+.card {
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px -2px rgba(0, 0, 0, 0.12), 0 2px 2px -1px rgba(0, 0, 0, 0.05);
+  margin-bottom: 1.5rem;
+
+  .card-header {
+    background: transparent;
+    border-bottom: 1px solid #f0f2f8;
+    padding: 1.25rem 1.5rem;
+    font-weight: 600;
+    font-size: 1rem;
+    color: #1b212c;
+  }
+
+  .card-body {
+    padding: 1.5rem;
+  }
+}
+
+// Tables
+.table {
+  thead th {
+    font-weight: 600;
+    font-size: 0.8125rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: $secondary;
+    border-bottom-width: 2px;
+    padding: 1rem;
+  }
+
+  td {
+    padding: 1rem;
+    vertical-align: middle;
+    font-size: 0.875rem;
+    color: #242c3a;
+  }
+}
+
+// Buttons
+.btn {
+  font-weight: 500;
+  font-size: 0.875rem;
+  padding: 0.5rem 1.25rem;
+  border-radius: 5px;
+  transition: all 0.15s ease;
+
+  &.btn-primary {
+    box-shadow: 0 2px 4px rgba(51, 102, 255, 0.3);
+
+    &:hover {
+      box-shadow: 0 4px 8px rgba(51, 102, 255, 0.4);
+    }
+  }
+}
+
+// Forms
+.form-control, .form-select {
+  border-radius: 5px;
+  border-color: #e0e0e0;
+  padding: 0.625rem 0.875rem;
+  font-size: 0.875rem;
+
+  &:focus {
+    border-color: $primary;
+    box-shadow: 0 0 0 0.2rem rgba(51, 102, 255, 0.15);
+  }
+}
+
+.form-label {
+  font-weight: 500;
+  font-size: 0.875rem;
+  color: $secondary;
+  margin-bottom: 0.375rem;
+}
+
+// Alerts
+.alert {
+  border: none;
+  border-radius: 5px;
+  font-size: 0.875rem;
+}
+
+// Breadcrumb
+.breadcrumb {
+  background: transparent;
+  padding: 0;
+  margin-bottom: 0;
+  font-size: 0.8125rem;
+
+  .breadcrumb-item a {
+    color: $primary;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+// Page header
+.page-header {
+  margin-bottom: 1.5rem;
+
+  h1, h2, h3 {
+    font-weight: 600;
+    color: #12171e;
+  }
+}
+
+// Badge styles
+.badge-materially {
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 0.35em 0.65em;
+  border-radius: 5px;
+}
+
+// Desktop: sidebar-closed hides sidebar, content expands
+body.sidebar-closed {
+  .materially-sidebar {
+    transform: translateX(-280px);
+  }
+
+  .materially-main {
+    margin-left: 0;
+  }
+}
+
+// Mobile: sidebar hidden by default, sidebar-open shows it
+@media (max-width: 1023px) {
+  .materially-sidebar {
+    transform: translateX(-280px);
+  }
+
+  .materially-main {
+    margin-left: 0;
+  }
+
+  body.sidebar-open {
+    .materially-sidebar {
+      transform: translateX(0);
+    }
+
+    .sidebar-overlay {
+      display: block;
+    }
+  }
+}
+
+// Sidebar toggle button
+.sidebar-toggle {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: #fff;
+  padding: 0.25rem 0.5rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+}
+
+// Dashboard — Report Card (Materially style)
+.report-card {
+  overflow: hidden;
+  box-shadow: 0 2px 14px 0 rgba(32, 40, 45, 0.12);
+
+  .report-card-value {
+    font-size: 1.5rem;
+    font-weight: 600;
+    line-height: 1.2;
+  }
+
+  .report-card-label {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: $secondary;
+    margin-top: 0.5rem;
+  }
+
+  .report-card-icon {
+    font-size: 2.5rem;
+    opacity: 0.85;
+  }
+
+  .report-card-footer {
+    padding: 0.6rem 1.5rem;
+    color: #fff;
+    font-size: 0.8125rem;
+    font-weight: 500;
+  }
+}
+
+// Dashboard — Sales Line Card (Materially style)
+.sales-card {
+  overflow: hidden;
+
+  .sales-card-header {
+    padding: 1.5rem 1.5rem 0.5rem;
+    color: #fff;
+  }
+
+  .sales-card-title {
+    font-size: 0.875rem;
+    font-weight: 500;
+  }
+
+  .sales-card-badge {
+    font-size: 0.875rem;
+    font-weight: 500;
+  }
+
+  .sales-card-stat {
+    padding: 1.25rem 0;
+    border-right: 1px solid $body-bg;
+
+    &:last-child {
+      border-right: none;
+    }
+  }
+
+  .sales-card-stat-value {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: $body-color;
+  }
+
+  .sales-card-stat-label {
+    font-size: 0.8125rem;
+    font-weight: 400;
+    color: $secondary;
+    margin-top: 0.25rem;
+  }
+}
+
+// Sidebar overlay
+.sidebar-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 1035;
+}

@@ -1,0 +1,68 @@
+ja:
+  activerecord:
+    models:
+      post: 投稿
+    attributes:
+      post:
+        title: タイトル
+        body: 本文
+  helpers:
+    submit:
+      create: 登録する
+      update: 更新する
+  layouts:
+    application:
+      app_name: Sample Rails
+      navigation: ナビゲーション
+      home: ホーム
+      search: 検索...
+      notifications: 通知
+      profile: プロフィール
+  dashboard:
+    show:
+      title: ダッシュボード
+      total_posts: 総投稿数
+      today: 今日の投稿
+      this_week: 今週の投稿
+      this_month: 今月の投稿
+      daily_posts: 日次投稿数
+      monthly_posts: 月次投稿数
+      posts_unit: 件
+      daily_max: 日次最大
+      daily_avg: 日次平均
+      monthly_max: 月次最大
+      monthly_avg: 月次平均
+      all_time_stats: 累計統計
+      todays_activity: 本日のアクティビティ
+      weekly_summary: 週間サマリー
+      monthly_summary: 月間サマリー
+  posts:
+    index:
+      title: 投稿一覧
+      new_post: 新規投稿
+      no_posts: 投稿はまだありません。
+      actions: 操作
+    show:
+      content: 内容
+      show: 表示
+      edit: 編集
+      back: 戻る
+      delete: 削除
+      confirm: 本当に削除しますか？
+    new:
+      title: 新規投稿
+      post_details: 投稿内容
+      back_to_posts: 一覧に戻る
+    edit:
+      title: 投稿の編集
+      post_details: 投稿内容
+      show: 表示
+      back_to_posts: 一覧に戻る
+    form:
+      errors:
+        one: "%{count}件のエラーにより投稿を保存できませんでした："
+        other: "%{count}件のエラーにより投稿を保存できませんでした："
+    flash:
+      created: 投稿を作成しました。
+      updated: 投稿を更新しました。
+      destroyed: 投稿を削除しました。

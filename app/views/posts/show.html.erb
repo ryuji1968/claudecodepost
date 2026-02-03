@@ -1,0 +1,36 @@
+<% content_for :title, @post.title %>
+<% content_for :breadcrumb do %>
+  <li class="breadcrumb-item"><%= link_to t("posts.index.title"), posts_path %></li>
+  <li class="breadcrumb-item active"><%= @post.title %></li>
+<% end %>
+
+<% if notice.present? %>
+  <div class="alert alert-success alert-dismissible fade show" role="alert">
+    <%= notice %>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+<% end %>
+
+<div class="page-header">
+  <h2><%= @post.title %></h2>
+</div>
+
+<div class="card">
+  <div class="card-header"><%= t(".content") %></div>
+  <div class="card-body">
+    <p style="white-space: pre-wrap; margin: 0;"><%= @post.body %></p>
+  </div>
+</div>
+
+<div class="d-flex gap-2">
+  <%= link_to edit_post_path(@post), class: "btn btn-primary" do %>
+    <i class="bi bi-pencil"></i> <%= t(".edit") %>
+  <% end %>
+  <%= link_to posts_path, class: "btn btn-outline-secondary" do %>
+    <i class="bi bi-arrow-left"></i> <%= t(".back") %>
+  <% end %>
+  <%= button_to @post, method: :delete, class: "btn btn-outline-danger",
+        data: { turbo_confirm: t(".confirm") } do %>
+    <i class="bi bi-trash"></i> <%= t(".delete") %>
+  <% end %>
+</div>

@@ -1,0 +1,54 @@
+# Files in the config/locales directory are used for internationalization and
+# are automatically loaded by Rails. If you want to use locales other than
+# English, add the necessary files in this directory.
+#
+# To use the locales, use `I18n.t`:
+#
+#     I18n.t "hello"
+#
+# In views, this is aliased to just `t`:
+#
+#     <%= t("hello") %>
+#
+# To use a different locale, set it with `I18n.locale`:
+#
+#     I18n.locale = :es
+#
+# This would use the information in config/locales/es.yml.
+#
+# To learn more about the API, please read the Rails Internationalization guide
+# at https://guides.rubyonrails.org/i18n.html.
+#
+# Be aware that YAML interprets the following case-insensitive strings as
+# booleans: `true`, `false`, `on`, `off`, `yes`, `no`. Therefore, these strings
+# must be quoted to be interpreted as strings. For example:
+#
+#     en:
+#       "yes": yup
+#       enabled: "ON"
+
+en:
+  hello: "Hello world"
+  layouts:
+    application:
+      search: "Search..."
+      notifications: Notifications
+      profile: Profile
+  dashboard:
+    show:
+      title: Dashboard
+      total_posts: Total Posts
+      today: Today
+      this_week: This Week
+      this_month: This Month
+      daily_posts: Daily Posts
+      monthly_posts: Monthly Posts
+      posts_unit: posts
+      daily_max: Daily Max
+      daily_avg: Daily Avg
+      monthly_max: Monthly Max
+      monthly_avg: Monthly Avg
+      all_time_stats: All time stats
+      todays_activity: Today's activity
+      weekly_summary: Weekly summary
+      monthly_summary: Monthly summary

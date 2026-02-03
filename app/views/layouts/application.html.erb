@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= content_for(:title) || t("layouts.application.app_name") %></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="Sample Rails">
+    <meta name="mobile-web-app-capable" content="yes">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= yield :head %>
+
+    <link rel="icon" href="/icon.png" type="image/png">
+    <link rel="icon" href="/icon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/icon.png">
+
+    <%# Includes all stylesheet files in app/assets/stylesheets %>
+    <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "bootstrap-icons", "data-turbo-track": "reload" %>
+    <%= javascript_include_tag "popper" %>
+    <%= javascript_include_tag "bootstrap.min" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body>
+    <%# Sidebar overlay for mobile %>
+    <div class="sidebar-overlay" onclick="toggleSidebar()"></div>
+
+    <%# Sidebar %>
+    <aside class="materially-sidebar" id="sidebar">
+      <div class="sidebar-brand">
+        <%= link_to t("layouts.application.app_name"), root_path, style: "text-decoration: none; color: inherit;" %>
+      </div>
+      <nav class="py-3">
+        <div class="nav-section-title"><%= t("layouts.application.navigation") %></div>
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <%= link_to dashboard_path, class: "nav-link #{controller_name == 'dashboard' ? 'active' : ''}" do %>
+              <span class="nav-icon"><i class="bi bi-speedometer2"></i></span> <%= t("dashboard.show.title") %>
+            <% end %>
+          </li>
+          <li class="nav-item">
+            <%= link_to posts_path, class: "nav-link #{controller_name == 'posts' ? 'active' : ''}" do %>
+              <span class="nav-icon"><i class="bi bi-file-text"></i></span> <%= t("posts.index.title") %>
+            <% end %>
+          </li>
+        </ul>
+      </nav>
+    </aside>
+
+    <%# Header %>
+    <header class="materially-header">
+      <div class="header-brand">
+        <%= link_to t("layouts.application.app_name"), root_path, class: "header-brand-text" %>
+        <button class="sidebar-toggle" onclick="toggleSidebar()"><i class="bi bi-list"></i></button>
+      </div>
+
+      <nav aria-label="breadcrumb" class="me-auto d-none d-md-block">
+        <ol class="breadcrumb mb-0">
+          <li class="breadcrumb-item"><%= link_to t("layouts.application.home"), root_path %></li>
+          <% if content_for?(:breadcrumb) %>
+            <%= yield :breadcrumb %>
+          <% end %>
+        </ol>
+      </nav>
+
+      <div class="header-actions">
+        <div class="header-search">
+          <i class="bi bi-search header-search-icon"></i>
+          <input type="text" class="form-control header-search-input" placeholder="<%= t('layouts.application.search') %>">
+        </div>
+        <button class="header-icon-btn" title="<%= t('layouts.application.notifications') %>">
+          <i class="bi bi-bell"></i>
+        </button>
+        <button class="header-icon-btn header-profile-btn" title="<%= t('layouts.application.profile') %>">
+          <i class="bi bi-person-circle"></i>
+        </button>
+      </div>
+    </header>
+
+    <%# Main content %>
+    <main class="materially-main">
+      <div class="materially-content">
+        <%= yield %>
+      </div>
+    </main>
+
+    <script>
+      (function() {
+        if (window.innerWidth >= 1024 && localStorage.getItem('sidebar-closed') === 'true') {
+          document.body.classList.add('sidebar-closed');
+        }
+      })();
+
+      function toggleSidebar() {
+        if (window.innerWidth >= 1024) {
+          var closed = document.body.classList.toggle('sidebar-closed');
+          localStorage.setItem('sidebar-closed', closed);
+        } else {
+          document.body.classList.toggle('sidebar-open');
+        }
+      }
+
+      document.addEventListener('turbo:load', function() {
+        if (window.innerWidth >= 1024 && localStorage.getItem('sidebar-closed') === 'true') {
+          document.body.classList.add('sidebar-closed');
+        }
+      });
+    </script>
+  </body>
+</html>

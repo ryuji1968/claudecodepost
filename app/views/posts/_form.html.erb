@@ -1,0 +1,28 @@
+<%= form_with(model: post, class: "needs-validation") do |form| %>
+  <% if post.errors.any? %>
+    <div class="alert alert-danger">
+      <h5><%= t("posts.form.errors", count: post.errors.count) %></h5>
+      <ul class="mb-0">
+        <% post.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="mb-3">
+    <%= form.label :title, class: "form-label" %>
+    <%= form.text_field :title, class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :body, class: "form-label" %>
+    <%= form.textarea :body, class: "form-control", rows: 8 %>
+  </div>
+
+  <div>
+    <button type="submit" class="btn btn-primary">
+      <i class="bi bi-check-lg"></i> <%= form.object.persisted? ? t("helpers.submit.update") : t("helpers.submit.create") %>
+    </button>
+  </div>
+<% end %>
