@@ -6,6 +6,10 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Rails 8.1 + MySQL 8.4 CRUD application running in Docker. Uses Propshaft (not Sprockets), importmap (no Node.js), and a custom "Materially" theme built on Bootstrap 5.3 with dartsass-rails.
 
+- **Default locale**: Japanese (`config.i18n.default_locale = :ja`)
+- **Local dev URL**: http://localhost:3000
+- **Root path**: Dashboard (`/` → `dashboard#show`)
+
 ## Commands
 
 All commands run inside Docker containers:
@@ -60,3 +64,10 @@ docker compose run --rm web bin/brakeman
 - Linting follows `rubocop-rails-omakase` (Rails team defaults)
 - Test framework is Minitest with parallel workers
 - CI runs: brakeman, bundler-audit, importmap audit, rubocop, test, system test
+
+## Routes
+
+- `GET /` — Dashboard (root)
+- `GET /dashboard` — Dashboard
+- `resources :posts` — Posts CRUD
+- `GET /up` — Health check endpoint
