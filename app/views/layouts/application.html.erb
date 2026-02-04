@@ -73,15 +73,36 @@
         <button class="header-icon-btn" title="<%= t('layouts.application.notifications') %>">
           <i class="bi bi-bell"></i>
         </button>
-        <button class="header-icon-btn header-profile-btn" title="<%= t('layouts.application.profile') %>">
-          <i class="bi bi-person-circle"></i>
-        </button>
+        <div class="dropdown">
+          <button class="header-icon-btn header-profile-btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" title="<%= t('layouts.application.profile') %>">
+            <i class="bi bi-person-circle"></i>
+          </button>
+          <ul class="dropdown-menu dropdown-menu-end">
+            <li><span class="dropdown-item-text text-muted"><%= Current.user&.email_address %></span></li>
+            <li><hr class="dropdown-divider"></li>
+            <li>
+              <%= button_to t("layouts.application.logout"), session_path, method: :delete, class: "dropdown-item" %>
+            </li>
+          </ul>
+        </div>
       </div>
     </header>
 
     <%# Main content %>
     <main class="materially-main">
       <div class="materially-content">
+        <% if flash[:notice].present? %>
+          <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <%= flash[:notice] %>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        <% end %>
+        <% if flash[:alert].present? %>
+          <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <%= flash[:alert] %>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        <% end %>
         <%= yield %>
       </div>
     </main>

@@ -89,6 +89,15 @@ jobs:
         with:
           bundler-cache: true
 
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 'lts/*'
+          cache: 'npm'
+
+      - name: Install Playwright browsers
+        run: npm ci && npx playwright install --with-deps chromium
+
       - name: Run RSpec
         env:
           RAILS_ENV: test
