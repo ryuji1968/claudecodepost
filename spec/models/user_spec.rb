@@ -19,6 +19,11 @@ RSpec.describe User, type: :model do
       user = User.new(email_address: "test@example.com", password: "", password_confirmation: "")
       expect(user).not_to be_valid
     end
+
+    it "password と password_confirmation が一致すること" do
+      user = User.new(email_address: "test@example.com", password: "password", password_confirmation: "different")
+      expect(user).not_to be_valid
+    end
   end
 
   describe "アソシエーション" do

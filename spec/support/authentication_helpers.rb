@@ -11,8 +11,7 @@ module AuthenticationHelpers
 
   module RequestHelpers
     def sign_in_as(user)
-      post_via = method(:post)
-      post_via.call(session_path, params: { email_address: user.email_address, password: "password" })
+      post(session_path, params: { email_address: user.email_address, password: "password" })
     end
   end
 end
